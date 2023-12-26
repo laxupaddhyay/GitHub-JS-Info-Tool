@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Information Gathering Tool</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            background: linear-gradient(to right, #4b6cb7, #182848);
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .input-container {
+            display: flex;
+            width: 100%;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 8px 16px;
+            cursor: pointer;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            color: #fff;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        tr:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        /* Media query for responsiveness */
+        @media (min-width: 600px) {
+            .input-container {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+
+            input {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GitHub Information Gathering Tool</h1>
+
+    <label for="username">Enter GitHub Username:</label>
+    <input type="text" id="username" placeholder="Enter username">
+    <button onclick="getUserInfo()">Get Info</button>
+
+    <div id="result"></div>
+
+    <script>
+        async function getUserInfo() {
+            const username = document.getElementById('username').value;
+            const resultContainer = document.getElementById('result');
+            resultContainer.innerHTML = ''; // Clear previous results
+
+            try {
+                // Fetch basic user information
+                const userResponse = await fetch(`https://api.github.com/users/${username}`);
+                const userData = await userResponse.json();
+
+                // Fetch repository information
+                const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+                const reposData = await reposResponse.json();
+
+                // Fetch contributions information using GraphQL
+                const graphQLQuery = `
+                    {
+                        user(login: "${username}") {
+                            contributionsCollection {
+                                contributionCalendar {
+                                    totalContributions
+                                    weeks {
+                                        contributionDays {
+                                            contributionCount
+                                        }
+                                    }
+                                }
+                                startedAt
+                            }
+                        }
+                    }
+                `;
+
+                const graphQLResponse = await fetch('https://api.github.com/graphql', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer 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',
+                    },
+                    body: JSON.stringify({ query: graphQLQuery }),
+                });
+
+                const graphQLData = await graphQLResponse.json();
+                const contributionsData = graphQLData.data.user.contributionsCollection;
+
+                const userInfo = `
+                    <p><strong>Username:</strong> ${userData.login}</p>
+                    <p><strong>Name:</strong> ${userData.name || 'Not available'}</p>
+                    <p><strong>Bio:</strong> ${userData.bio || 'Not available'}</p>
+                    <p><strong>Location:</strong> ${userData.location || 'Not available'}</p>
+                    <p><strong>Email:</strong> ${userData.email || 'Not available'}</p>
+                    <p><strong>Company:</strong> ${userData.company || 'Not available'}</p>
+                    <p><strong>Public Repositories:</strong> ${userData.public_repos}</p>
+                    <p><strong>Followers:</strong> ${userData.followers}</p>
+                    <p><strong>Following:</strong> ${userData.following}</p>
+                    <p><strong>Created at:</strong> ${new Date(userData.created_at).toLocaleDateString()}</p>
+                    <p><strong>Updated at:</strong> ${new Date(userData.updated_at).toLocaleDateString()}</p>
+                    <p><strong>Repositories:</strong></p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Language</th>
+                                <th>Stars</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${reposData.map(repo => `
+                                <tr>
+                                    <td>${repo.name}</td>
+                                    <td>${repo.description || 'Not available'}</td>
+                                    <td>${repo.language || 'Not available'}</td>
+                                    <td>${repo.stargazers_count || 0}</td>
+                                </tr>`).join('')}
+                        </tbody>
+                    </table>
+                    <p><strong>Longest Streak:</strong> ${contributionsData.contributionCalendar.weeks.reduce((max, week) => Math.max(max, week.contributionDays.reduce((dayMax, day) => Math.max(dayMax, day.contributionCount), 0)), 0)}</p>
+                    <p><strong>Number of Contributions:</strong> ${contributionsData.contributionCalendar.totalContributions}</p>
+                `;
+
+                resultContainer.innerHTML = userInfo;
+            } catch (error) {
+                if (error.status === 404) {
+                    resultContainer.innerHTML = `<p>User ${username} not found.</p>`;
+                } else {
+                    resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
