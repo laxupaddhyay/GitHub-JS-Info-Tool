@@ -110,6 +110,11 @@ tr:hover {
 
   table {
     font-size: 14px;
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 20px;
+    overflow-x: auto;  /* Add overflow-x for horizontal scroll */
+    display: block;
   }
 
   table a {
