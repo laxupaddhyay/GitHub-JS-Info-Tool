@@ -2,7 +2,7 @@ body {
   font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background: linear-gradient(to right, #45a3e5, #93c4ed);
+  background: linear-gradient(to right, #3498DB, #5D8CAE);
   color: #fff;
   overflow-x: hidden;
 }
@@ -58,8 +58,8 @@ input:focus {
 button {
   padding: 10px 16px;
   cursor: pointer;
-  background: #3498DB;
-  color: #fff;
+  background: #2C3E50; /* Darker color */
+  color: #ECF0F1; /* Lighter text color */
   border: none;
   border-radius: 4px;
   transition: background 0.3s ease;
@@ -69,7 +69,7 @@ button {
 }
 
 button:hover {
-  background: #2980B9;
+  background: #1F2C35; /* Darker color on hover */
 }
 
 #result {
@@ -81,6 +81,7 @@ table {
   border-collapse: collapse;
   width: 100%;
   margin-top: 20px;
+  overflow-x: auto;
 }
 
 th, td {
@@ -90,8 +91,8 @@ th, td {
 }
 
 th {
-  background-color: #3498DB;
-  color: #fff;
+  background-color: #2C3E50;
+  color: #ECF0F1;
 }
 
 tr:hover {
@@ -105,6 +106,10 @@ tr:hover {
 
   input {
     width: calc(100% - 20px);
+  }
+
+  table {
+    font-size: 14px;
   }
 
   table a {
