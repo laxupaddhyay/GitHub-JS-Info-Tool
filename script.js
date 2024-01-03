@@ -1,19 +1,24 @@
 async function getUserInfo() {
-  const username = document.getElementById('username').value;
-  const resultContainer = document.getElementById('result');
-  resultContainer.innerHTML = ''; // Clear previous results
+    const username = document.getElementById('username').value;
+    const resultContainer = document.getElementById('result');
+    resultContainer.innerHTML = ''; // Clear previous results
 
-  try {
-    // Fetch user information
-    const userResponse = await fetch(`https://api.github.com/users/${username}`);
-    const userData = await userResponse.json();
+    try {
+       
+        const userResponse = await fetch(`https://api.github.com/users/${username}`);
+        const userData = await userResponse.json();
 
-    // Fetch user repositories
-    const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
-    const reposData = await reposResponse.json();
+        if (userResponse.status === 404) {
+            resultContainer.innerHTML = `<p>Invalid username: ${username}</p>`;
+            return;
+        }
 
-    // Display user information
-    const userInfo = `
+       
+        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+        const reposData = await reposResponse.json();
+
+        
+        const userInfo = `
       <p><strong>Username:</strong> ${userData.login}</p>
       <p><strong>Name:</strong> ${userData.name || 'Not available'}</p>
       <p><strong>Bio:</strong> ${userData.bio || 'Not available'}</p>
@@ -27,8 +32,8 @@ async function getUserInfo() {
       <p><strong>Updated at:</strong> ${new Date(userData.updated_at).toLocaleDateString()}</p>
     `;
 
-    // Display user repositories in a table with clickable links
-    const repoTable = `
+        
+        const repoTable = `
       <h2>Repositories:</h2>
       <table>
         <thead>
@@ -50,12 +55,8 @@ async function getUserInfo() {
       </table>
     `;
 
-    resultContainer.innerHTML = userInfo + repoTable;
-  } catch (error) {
-    if (error.status === 404) {
-      resultContainer.innerHTML = `<p>User ${username} not found.</p>`;
-    } else {
-      resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+        resultContainer.innerHTML = userInfo + repoTable;
+    } catch (error) {
+        resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
     }
-  }
 }
