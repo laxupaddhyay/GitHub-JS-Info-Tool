@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Information Gathering Tool</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Information Gathering Tool</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <header>
-    <h1>GitHub Information Gathering Tool</h1>
-  </header>
+    <header>
+        <h1>GitHub Information Gathering Tool</h1>
+    </header>
 
-  <main>
-    <label for="username">Enter GitHub Username:</label>
-    <input type="text" id="username" placeholder="Enter username">
-    <button onclick="getUserInfo()">Get Info</button>
+    <main>
+        <form id="githubForm">
+            <label for="username">Enter GitHub Username:</label>
+            <input type="text" id="username" placeholder="Enter username" onkeydown="handleEnter(event)">
+            <button type="button" onclick="getUserInfo()">Get Info</button>
+        </form>
 
-    <div id="result"></div>
-  </main>
+        <div id="result"></div>
+    </main>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
+    <script>
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                getUserInfo();
+            }
+        }
+    </script>
 
 </body>
+
 </html>
