@@ -104,7 +104,7 @@ tr:hover {
     padding: 10px;
   }
   .loading{
- 
+
   margin: 20px auto; /* Center the loader horizontally */
     margin-left: 0;
 }
@@ -138,6 +138,7 @@ tr:hover {
     border-radius: 50%;
     width: 40px;
     height: 40px;
+  margin-top: 20px;
     animation: spin 1s linear infinite;
     margin-left: 43%; /* Center the loader horizontally */
     transform: translateX(-50%); /* Adjust to center the loader */
