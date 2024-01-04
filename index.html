@@ -1,144 +1,40 @@
-body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  background: linear-gradient(to right, #3498DB, #5D8CAE);
-  color: #fff;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="en">
 
-header {
-  background: #2C3E50;
-  padding: 20px;
-  text-align: center;
-}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Information Gathering Tool</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-h1 {
-  margin: 0;
-  font-size: 2em;
-  color: #ECF0F1;
-}
+<body>
 
-main {
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-  box-sizing: border-box;
-  transition: box-shadow 0.3s ease;
-}
+    <header>
+        <h1>GitHub Information Gathering Tool</h1>
+    </header>
 
-main:hover {
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
-}
+    <main>
+        <form id="githubForm">
+            <label for="username">Enter GitHub Username:</label>
+            <input type="text" id="username" placeholder="Enter username" onkeydown="handleEnter(event)">
+            <button type="button" onclick="getUserInfo()">Get Info</button>
+            <div id="loadingIndicator" class="loading"></div>
+        </form>
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  color: #2C3E50;
-}
+        <div id="result"></div>
+    </main>
 
-input {
-  width: calc(100% - 20px);
-  padding: 10px;
-  margin-bottom: 16px;
-  box-sizing: border-box;
-  border: 2px solid #3498DB;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
-}
+    <script src="script.js"></script>
+    <script>
+        function handleEnter(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                getUserInfo();
+            }
+        }
+    </script>
 
-input:hover,
-input:focus {
-  border-color: #2980B9;
-}
+</body>
 
-button {
-  padding: 10px 16px;
-  cursor: pointer;
-  background: #2C3E50; /* Darker color */
-  color: #ECF0F1; /* Lighter text color */
-  border: none;
-  border-radius: 4px;
-  transition: background 0.3s ease;
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-button:hover {
-  background: #1F2C35; /* Darker color on hover */
-}
-
-#result {
-  margin-top: 20px;
-  color: #2C3E50;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-top: 20px;
-  overflow-x: auto;
-}
-
-th, td {
-  border: 1px solid #ddd;
-  padding: 12px;
-  text-align: left;
-}
-
-th {
-  background-color: #2C3E50;
-  color: #ECF0F1;
-}
-
-tr:hover {
-  background-color: #ECF0F1;
-}
-
-@media screen and (max-width: 600px) {
-  main {
-    padding: 10px;
-  }
-
-  input {
-    width: calc(100% - 20px);
-  }
-
-  table {
-    font-size: 14px;
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 20px;
-    overflow-x: auto;  /* Add overflow-x for horizontal scroll */
-    display: block;
-  }
-
-  table a {
-    color: #3498DB;
-    text-decoration: none;
-    font-weight: bold;
-  }
-
-  table a:hover {
-    text-decoration: underline;
-  }
-}
-.loading {
-    border: 8px solid #f3f3f3;
-    border-top: 8px solid #3498DB; /* Change to your button color */
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin-left: 10px; /* Adjust the margin as needed */
-    display: none; /* Initially hidden */
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
+</html>
