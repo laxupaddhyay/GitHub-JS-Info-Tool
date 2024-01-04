@@ -1,23 +1,30 @@
 async function getUserInfo() {
-    const username = document.getElementById('username').value;
-    const resultContainer = document.getElementById('result');
-    resultContainer.innerHTML = ''; // Clear previous results
+  const usernameInput = document.getElementById('username');
+  const resultContainer = document.getElementById('result');
+  const loadingIndicator = document.getElementById('loadingIndicator');
 
-    try {
-       
-        const userResponse = await fetch(`https://api.github.com/users/${username}`);
-        const userData = await userResponse.json();
+  const username = usernameInput.value;
+  resultContainer.innerHTML = ''; // Clear previous results
 
-        if (userResponse.status === 404) {
-            resultContainer.innerHTML = `<p>Invalid username: ${username}</p>`;
-            return;
-        }
+  try {
+      // Show loading indicator
+      loadingIndicator.style.display = 'inline-block';
 
-       
-        const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
-        const reposData = await reposResponse.json();
+      // Fetch user information
+      const userResponse = await fetch(`https://api.github.com/users/${username}`);
+      const userData = await userResponse.json();
 
-        
+      if (userResponse.status === 404) {
+          resultContainer.innerHTML = `<p>Invalid username: ${username}</p>`;
+          return;
+      }
+
+      // Fetch user repositories
+      const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
+      const reposData = await reposResponse.json();
+
+      // Display user information
+    
         const userInfo = `
       <p><strong>Username:</strong> ${userData.login}</p>
       <p><strong>Name:</strong> ${userData.name || 'Not available'}</p>
@@ -32,7 +39,7 @@ async function getUserInfo() {
       <p><strong>Updated at:</strong> ${new Date(userData.updated_at).toLocaleDateString()}</p>
     `;
 
-        
+        // Display user repositories in a table with clickable links
         const repoTable = `
       <h2>Repositories:</h2>
       <table>
@@ -55,8 +62,11 @@ async function getUserInfo() {
       </table>
     `;
 
-        resultContainer.innerHTML = userInfo + repoTable;
+ resultContainer.innerHTML = userInfo + repoTable;
     } catch (error) {
         resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
+    } finally {
+        // Hide loading indicator
+        loadingIndicator.style.display = 'none';
     }
 }
