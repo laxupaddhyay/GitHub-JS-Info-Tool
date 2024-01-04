@@ -139,7 +139,11 @@ tr:hover {
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-    margin: 20px auto
+  
+  margin-top: 20px;
+  margin-left: 45vh;
+  
+
     display: none; /* Initially hidden */
 }
 
