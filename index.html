@@ -2,38 +2,61 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Information Gathering Tool</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Information Gathering Tool</title>
+  <meta name="description"
+    content="Explore GitHub user information and repositories with ease. Lakshya Upaddhyay's GitHub Information Tool offers insights into users and their projects.">
+  <meta name="keywords" content="GitHub, user information, repositories, Lakshya Upaddhyay, coding tool, programming">
+  <meta name="author" content="Lakshya Upaddhyay">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://git-hub-js-info-tool.vercel.app/">
+  <meta property="og:title" content="GitHub Information Tool by Lakshya Upaddhyay">
+  <meta property="og:description"
+    content="Explore GitHub user information and repositories with ease. Lakshya Upaddhyay's GitHub Information Tool offers insights into users and their projects.">
+  <meta property="og:image" content="URL to an image representing your application">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="YourWebsiteURL">
+  <meta property="twitter:title" content="GitHub Information Tool by Lakshya Upaddhyay">
+  <meta property="twitter:description"
+    content="Explore GitHub user information and repositories with ease. Lakshya Upaddhyay's GitHub Information Tool offers insights into users and their projects.">
+  <meta property="twitter:image" content="URL to an image representing your application">
+
+  <!-- Favicon -->
+  <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"> -->
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <header>
-        <h1>GitHub Information Gathering Tool</h1>
-    </header>
+  <header>
+    <h1>GitHub Information Gathering Tool</h1>
+  </header>
 
-    <main>
-        <form id="githubForm">
-            <label for="username">Enter GitHub Username:</label>
-            <input type="text" id="username" placeholder="Enter username" onkeydown="handleEnter(event)">
-            <button type="button" onclick="getUserInfo()">Get Info</button>
-            <div id="loadingIndicator" class="loading"></div>
-        </form>
+  <main>
+    <form id="githubForm">
+      <label for="username">Enter GitHub Username:</label>
+      <input type="text" id="username" placeholder="Enter username" onkeydown="handleEnter(event)">
+      <button type="button" onclick="getUserInfo()">Get Github Info</button>
+      <div id="loadingIndicator" class="loading"></div>
+    </form>
 
-        <div id="result"></div>
-    </main>
+    <div id="result" class="fade-in"></div>
+  </main>
 
-    <script src="script.js"></script>
-    <script>
-        function handleEnter(event) {
-            if (event.key === 'Enter') {
-                event.preventDefault();
-                getUserInfo();
-            }
-        }
-    </script>
+  <script src="script.js"></script>
+  <script>
+    function handleEnter(event) {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        getUserInfo();
+      }
+    }
+  </script>
 
 </body>
 
