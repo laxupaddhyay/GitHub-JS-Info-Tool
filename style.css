@@ -69,7 +69,8 @@ button {
 }
 
 button:hover {
-  background: #1F2C35; /* Darker color on hover */
+  background: #d7cfff; 
+  color: black;
 }
 
 #result {
