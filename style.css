@@ -103,6 +103,11 @@ tr:hover {
   main {
     padding: 10px;
   }
+  .loading{
+  margin-top: 20px;
+  margin-left: 45vh;
+  
+}
 
   input {
     width: calc(100% - 20px);
