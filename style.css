@@ -105,8 +105,8 @@ tr:hover {
   }
   .loading{
  
-  margin: 20px auto;
-  
+  margin: 20px auto; /* Center the loader horizontally */
+    margin-left: 0;
 }
 
   input {
@@ -139,11 +139,8 @@ tr:hover {
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
-  
-  margin-top: 20px;
-  margin-left: 45vh;
-  
-
+    margin-left: 50%; /* Center the loader horizontally */
+    transform: translateX(-50%); /* Adjust to center the loader */
     display: none; /* Initially hidden */
 }
 
