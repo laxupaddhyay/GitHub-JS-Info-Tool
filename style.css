@@ -168,3 +168,37 @@ tr:hover {
     transform: rotate(360deg);
   }
 }
+
+
+
+footer {
+  background: #2C3E50;
+  color: #ECF0F1;
+  text-align: center;
+  padding: 10px;
+  margin-top: auto;
+  font-weight: bold;
+  font-size: 1.3em;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+footer:hover {
+  background: #d5d1ea;
+  color: black;
+}
+
+.social-links {
+  margin-top: 8px;
+}
+
+.social-links a {
+  color: #ECF0F1;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: black;
+  text-decoration: underline;
+}
