@@ -21,14 +21,17 @@ h1 {
 
 main {
   max-width: 800px;
-  margin: 20px auto;
+  margin: 20px auto 60px;
   padding: 20px;
+  z-index: 1;
+ position:relative;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   transition: box-shadow 0.3s ease;
 }
+
 
 main:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -171,6 +174,7 @@ tr:hover {
 
 
 
+
 footer {
   background: #2C3E50;
   color: #ECF0F1;
@@ -182,6 +186,14 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
+  
+}
+
+footer {
+  
+  left: 0;
+  width: 100%;
+  
 }
 footer:hover {
   background: #d5d1ea;
