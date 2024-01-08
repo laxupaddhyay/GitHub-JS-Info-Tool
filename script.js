@@ -22,7 +22,8 @@ async function getUserInfo() {
     // Fetch user repositories
     const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
     const reposData = await reposResponse.json();
-
+    const starredResponse = await fetch(`https://api.github.com/users/${username}/starred`);
+    const starredData = await starredResponse.json();
     // Display user information
     const userInfo = `
       <p><strong>Username:</strong> ${userData.login}</p>
@@ -61,8 +62,30 @@ async function getUserInfo() {
         </tbody>
       </table>
     `;
+    // Display user starred repositories in a table with clickable links
+    const starredTable = `
+      <h2>Starred Repositories:</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Language</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${starredData.map(starredRepo => `
+            <tr>
+              <td><a href="${starredRepo.html_url}" target="_blank">${starredRepo.name}</a></td>
+              <td>${starredRepo.description || 'Not available'}</td>
+              <td>${starredRepo.language || 'Not available'}</td>
+            </tr>
+          `).join('')}
+        </tbody>
+      </table>
+    `;
 
-    resultContainer.innerHTML = userInfo + repoTable;
+    resultContainer.innerHTML = userInfo + repoTable + starredTable;
   } catch (error) {
     resultContainer.innerHTML = `<p>Error: ${error.message}</p>`;
   } finally {
@@ -94,4 +117,4 @@ function getTopLanguages(repos) {
 
   return topLanguages.join(', ');
 }
-
+const loadingIndicator = document.querySelector('.loading');
