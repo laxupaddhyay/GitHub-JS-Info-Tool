@@ -24,14 +24,13 @@ main {
   margin: 20px auto 60px;
   padding: 20px;
   z-index: 1;
- position:relative;
+  position: relative;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
   transition: box-shadow 0.3s ease;
 }
-
 
 main:hover {
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
@@ -57,18 +56,18 @@ input:hover,
 input:focus {
   border-color: #2980B9;
 }
-#username{
+
+#username {
   width: 100%;
 }
+
 button {
   padding: 10px 16px;
   font-weight: bold;
   font-size: 1.3em;
   cursor: pointer;
   background: #2C3E50;
-  /* Darker color */
   color: #ECF0F1;
-  /* Lighter text color */
   border: none;
   border-radius: 4px;
   transition: background 0.3s ease;
@@ -116,9 +115,7 @@ tr:hover {
   }
 
   .loading {
-
     margin: 20px auto;
-    /* Center the loader horizontally */
     margin-left: 0;
   }
 
@@ -132,7 +129,6 @@ tr:hover {
     width: 100%;
     margin-top: 20px;
     overflow-x: auto;
-    /* Add overflow-x for horizontal scroll */
     display: block;
   }
 
@@ -150,32 +146,24 @@ tr:hover {
 .loading {
   border: 8px solid #f3f3f3;
   border-top: 8px solid #3498DB;
-  /* Change to your button color */
   border-radius: 50%;
   width: 40px;
   height: 40px;
   margin-top: 20px;
   animation: spin 1s linear infinite;
   margin-left: 43%;
-  /* Center the loader horizontally */
   transform: translateX(-50%);
-  /* Adjust to center the loader */
   display: none;
-  /* Initially hidden */
 }
 
 @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
-
   100% {
     transform: rotate(360deg);
   }
 }
-
-
-
 
 footer {
   background: #2C3E50;
@@ -188,15 +176,8 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  
 }
 
-footer {
-  
-  left: 0;
-  width: 100%;
-  
-}
 footer:hover {
   background: #d5d1ea;
   color: black;
@@ -212,7 +193,115 @@ footer:hover {
   text-decoration: none;
 }
 
-.social-links a:hover {
+social-links a:hover {
   color: black;
   text-decoration: underline;
 }
+
+
+
+
+
+/* General Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+}
+.col{
+   background-color:blue;
+}
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+
+}
+
+/* Search Form */
+.search form {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.search input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.search button {
+    background-color: #f2f2f2;
+    color: #333;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.search button i {
+    font-size: 16px;
+}
+
+/* Recent Posts */
+.recent {
+    margin-top: 30px;
+}
+
+.recent h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.post-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .post-item {
+    width: 20%;
+    display: flex;
+    /* Added */
+    align-items: center;
+    /* Added */
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .post-thumbnail img {
+    width: 70px;
+    height: 70px;
+    margin-right: 10px;
+    /* Added */
+  }
+
+  .post-item h3:hover {
+    color: blue;
+  }
+
+  .post-title {
+    font-size: 16px;
+    margin-top: 20px;
+    /* Changed */
+
+  }
+
+  .post-date {
+    font-size: 14px;
+    color: #888;
+  }
+
+  .post-date i {
+    margin-right: 10px;
+  }
