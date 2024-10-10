@@ -1,7 +1,3 @@
-
-
-
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,41 +28,50 @@
 
   <!-- Favicon -->
   <!-- <link rel="icon" type="image/png" sizes="32x32" href="favicon.png"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-  <header>
+  <header class="bg-dark text-white text-center py-3">
     <h1>GitHub Information Gathering Tool</h1>
   </header>
 
-  <main>
-    <form id="githubForm">
-      <label for="username">Enter GitHub Username:</label>
-      <input type="text" id="username" placeholder="Enter username" onkeydown="handleEnter(event)">
-      <button type="button" onclick="getUserInfo()">Get Github Info</button>
-      <div id="loadingIndicator" class="loading"></div>
+  <main class="container mt-5">
+    <form id="githubForm" class="mb-4">
+      <div class="mb-3">
+        <label for="username" class="form-label">Enter GitHub Username:</label>
+        <input type="text" class="form-control" id="username" placeholder="Enter username"
+          onkeydown="handleEnter(event)">
+      </div>
+      <button type="button" class="btn btn-primary w-100" onclick="getUserInfo()">Get GitHub Info</button>
+      <div id="loadingIndicator" class="loading mt-3"></div>
     </form>
 
     <div id="result" class="fade-in"></div>
-  
     <div id="starredRepos"></div>
-
+    <div id="followers"></div>
+    <div id="following"></div>
+    <div id="commits"></div>
   </main>
 
-  <footer>
+  <footer class="bg-dark text-white text-center py-3 mt-auto">
     <h2>Made with 😴 by LaxUpaddhyay</h2>
     <div class="social-links">
-      <a href="https://www.linkedin.com/in/lakshya-upaddhyay/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-      <a href="https://github.com/laxupaddhyay" target="_blank" rel="noopener noreferrer">GitHub</a>
-      <a href="https://www.instagram.com/lakshya_upaddhyay/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a href="https://www.linkedin.com/in/lakshya-upaddhyay/" target="_blank" rel="noopener noreferrer"
+        class="text-white mx-2">LinkedIn</a>
+      <a href="https://github.com/laxupaddhyay" target="_blank" rel="noopener noreferrer"
+        class="text-white mx-2">GitHub</a>
+      <a href="https://www.instagram.com/lakshya_upaddhyay/" target="_blank" rel="noopener noreferrer"
+        class="text-white mx-2">Instagram</a>
     </div>
   </footer>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"
     integrity="sha512-EZI2cBcGPnmR89wTgVnN3602Yyi7muWo8y1B3a8WmIv1J9tYG+udH4LvmYjLiGp37yHB7FfaPBo8ly178m9g4Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="script.js"></script>
   <script>
     function handleEnter(event) {
